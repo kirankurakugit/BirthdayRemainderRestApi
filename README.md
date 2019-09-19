@@ -10,7 +10,7 @@ Template for a Spring 4 MVC Form Handling example. A complete Spring MVC CRUD ex
 
 ###2. To Run this project locallyme1234
 ```shell
-$ git clone https://github.com/mkyong/spring-mvc-form-handling
+$ https://github.com/kirankurakugit/BirthdayRemainderRestApi.git
 $ mvn jetty:run
 ```
 Access ```http://localhost:8080/spring-mvc-form/```
@@ -20,6 +20,4 @@ Access ```http://localhost:8080/spring-mvc-form/```
 2. Import into Eclipse via **existing projects into workspace** option.
 3. Done.
 
-###4. Project Demo
-Please refer to this article [Spring MVC Form Handling Examples](http://www.mkyong.com/spring-mvc/spring-mvc-form-handling-example/)
 
