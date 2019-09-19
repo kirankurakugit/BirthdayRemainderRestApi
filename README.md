@@ -1,7 +1,6 @@
 Spring MVC RestAPiHelloWorld
 ===============================
-Template for a Spring 4 MVC Form Handling example. A complete Spring MVC CRUD example with HTML form, using Spring validator and Bootstrap for CSS styling.
-
+To Display Birthday remainder of particular user and number of reamaing for the user
 ###1. Technologies used
 * Maven 3.0
 * Spring 4.1.6.RELEASE
