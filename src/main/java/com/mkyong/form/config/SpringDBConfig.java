@@ -1,4 +1,4 @@
-package com.mkyong.form.config;
+package com.zensar.form.config;
 
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
