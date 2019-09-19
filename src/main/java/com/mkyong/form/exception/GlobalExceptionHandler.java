@@ -1,4 +1,4 @@
-package com.mkyong.form.exception;
+package com.zensar.form.exception;
 
 import javax.servlet.http.HttpServletRequest;
 
