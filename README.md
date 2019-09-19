@@ -1,4 +1,4 @@
-Spring MVC Form Handling Example
+Spring MVC RestAPiHelloWorld
 ===============================
 Template for a Spring 4 MVC Form Handling example. A complete Spring MVC CRUD example with HTML form, using Spring validator and Bootstrap for CSS styling.
 
@@ -8,7 +8,7 @@ Template for a Spring 4 MVC Form Handling example. A complete Spring MVC CRUD ex
 * HSQLDB 2.3.2
 * Bootstrap 3
 
-###2. To Run this project locally
+###2. To Run this project locallyme1234
 ```shell
 $ git clone https://github.com/mkyong/spring-mvc-form-handling
 $ mvn jetty:run
