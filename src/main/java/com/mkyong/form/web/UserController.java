@@ -1,4 +1,4 @@
-package com.mkyong.form.web;
+package com.zensar.form.web;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,15 +25,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
+import com.zensar.form.model.User;
+import com.zensar.form.service.UserService;
+import com.zensar.form.validator.UserFormValidator;
 
-import com.mkyong.form.model.User;
-import com.mkyong.form.service.UserService;
-import com.mkyong.form.validator.UserFormValidator;
-//import javax.validation.Valid;
-
-//http://www.tikalk.com/redirectattributes-new-feature-spring-mvc-31/
-//https://en.wikipedia.org/wiki/Post/Redirect/Get
-//http://www.oschina.net/translate/spring-mvc-flash-attribute-example
 @Controller
 public class UserController {
 
@@ -60,16 +60,7 @@ public class UserController {
 		return "redirect:/users";
 	}
 
-	// list page
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public String showAllUsers(Model model) {
-
-		logger.debug("showAllUsers()");
-		model.addAttribute("users", userService.findAll());
-		return "users/list";
-
-	}
-
+	
 	// save or update user
 	@RequestMapping(value = "/users", method = RequestMethod.POST)
 	public String saveOrUpdateUser(@ModelAttribute("userForm") @Validated User user,
@@ -84,16 +75,34 @@ public class UserController {
 
 			userService.saveOrUpdate(user);
 
-			redirectAttributes.addFlashAttribute("css", "success");
-			if(user.isNew()){
-				redirectAttributes.addFlashAttribute("msg", "User added successfully!");
-			}else{
-				redirectAttributes.addFlashAttribute("msg", "User updated successfully!");
-			}
+					
+			 String dateStr_1 ="02-May-1991";
+ String username="kiran";
+ String birthdayy;
+       LocalDate today = LocalDate.now();
+  DateTimeFormatter formatter_1=DateTimeFormatter.ofPattern("dd-MMM-yyyy");
+  LocalDate birthday= LocalDate.parse(dateStr_1,formatter_1);
+      // LocalDate birthday = LocalDate.of(1960, Month.JANUARY, 1);
+
+       LocalDate nextBDay = birthday.withYear(today.getYear());
+
+       //If your birthday has occurred this year already, add 1 to the year.
+       if (nextBDay.isBefore(today) || nextBDay.isEqual(today)) {
+           nextBDay = nextBDay.plusYears(1);
+       }
+
+       Period p = Period.between(today, nextBDay);
+       long p2 = ChronoUnit.DAYS.between(today, nextBDay);
+       //System.out.println("There are " + p.getMonths() + " months, and " +
+                        //  p.getDays() + " days until your next birthday. (" +
+                         // p2 + " total)");
+
+       birthdayy="There ae "+p.getMonths() +"months,and"+ p.getDays() +"days until your next birthday";
+       System.out.println(birthdayy);
 			
-			
+				
 			// POST/REDIRECT/GET
-			return "redirect:/users/" + user.getId();
+			return "redirect:/users/" + user.getuserName();
 
 			// POST/FORWARD/GET
 			// return "user/list";
@@ -146,21 +155,7 @@ public class UserController {
 
 	}
 
-	// delete user
-	@RequestMapping(value = "/users/{id}/delete", method = RequestMethod.POST)
-	public String deleteUser(@PathVariable("id") int id, final RedirectAttributes redirectAttributes) {
-
-		logger.debug("deleteUser() : {}", id);
-
-		userService.delete(id);
-		
-		redirectAttributes.addFlashAttribute("css", "success");
-		redirectAttributes.addFlashAttribute("msg", "User is deleted!");
-		
-		return "redirect:/users";
-
-	}
-
+	
 	// show user
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	public String showUser(@PathVariable("id") int id, Model model) {
@@ -177,43 +172,7 @@ public class UserController {
 		return "users/show";
 
 	}
-
-	private void populateDefaultModel(Model model) {
-
-		List<String> frameworksList = new ArrayList<String>();
-		frameworksList.add("Spring MVC");
-		frameworksList.add("Struts 2");
-		frameworksList.add("JSF 2");
-		frameworksList.add("GWT");
-		frameworksList.add("Play");
-		frameworksList.add("Apache Wicket");
-		model.addAttribute("frameworkList", frameworksList);
-
-		Map<String, String> skill = new LinkedHashMap<String, String>();
-		skill.put("Hibernate", "Hibernate");
-		skill.put("Spring", "Spring");
-		skill.put("Struts", "Struts");
-		skill.put("Groovy", "Groovy");
-		skill.put("Grails", "Grails");
-		model.addAttribute("javaSkillList", skill);
-
-		List<Integer> numbers = new ArrayList<Integer>();
-		numbers.add(1);
-		numbers.add(2);
-		numbers.add(3);
-		numbers.add(4);
-		numbers.add(5);
-		model.addAttribute("numberList", numbers);
-
-		Map<String, String> country = new LinkedHashMap<String, String>();
-		country.put("US", "United Stated");
-		country.put("CN", "China");
-		country.put("SG", "Singapore");
-		country.put("MY", "Malaysia");
-		model.addAttribute("countryList", country);
-
-	}
-
+	
 	@ExceptionHandler(EmptyResultDataAccessException.class)
 	public ModelAndView handleEmptyData(HttpServletRequest req, Exception ex) {
 
