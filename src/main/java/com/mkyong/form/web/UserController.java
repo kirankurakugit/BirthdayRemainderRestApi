@@ -111,23 +111,7 @@ public class UserController {
 
 	}
 
-	
-	// show update form
-	@RequestMapping(value = "/users/{id}/update", method = RequestMethod.GET)
-	public String showUpdateUserForm(@PathVariable("id") int id, Model model) {
-
-		logger.debug("showUpdateUserForm() : {}", id);
-
-		User user = userService.findById(id);
-		model.addAttribute("userForm", user);
 		
-		populateDefaultModel(model);
-		
-		return "users/userform";
-
-	}
-
-	
 	// show user
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
 	public String showUser(@PathVariable("id") int id, Model model) {
