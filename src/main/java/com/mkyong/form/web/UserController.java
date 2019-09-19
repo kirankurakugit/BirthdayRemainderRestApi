@@ -111,35 +111,7 @@ public class UserController {
 
 	}
 
-	// show add user form
-	@RequestMapping(value = "/users/add", method = RequestMethod.GET)
-	public String showAddUserForm(Model model) {
-
-		logger.debug("showAddUserForm()");
-
-		User user = new User();
-
-		// set default value
-		user.setName("mkyong123");
-		user.setEmail("test@gmail.com");
-		user.setAddress("abc 88");
-		//user.setPassword("123");
-		//user.setConfirmPassword("123");
-		user.setNewsletter(true);
-		user.setSex("M");
-		user.setFramework(new ArrayList<String>(Arrays.asList("Spring MVC", "GWT")));
-		user.setSkill(new ArrayList<String>(Arrays.asList("Spring", "Grails", "Groovy")));
-		user.setCountry("SG");
-		user.setNumber(2);
-
-		model.addAttribute("userForm", user);
-
-		populateDefaultModel(model);
-
-		return "users/userform";
-
-	}
-
+	
 	// show update form
 	@RequestMapping(value = "/users/{id}/update", method = RequestMethod.GET)
 	public String showUpdateUserForm(@PathVariable("id") int id, Model model) {
