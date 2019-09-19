@@ -1,12 +1,12 @@
-package com.mkyong.form.service;
+package com.zensar.form.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mkyong.form.dao.UserDao;
-import com.mkyong.form.model.User;
+import com.zensar.form.dao.UserDao;
+import com.zensar.form.model.User;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -18,15 +18,6 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
-	@Override
-	public User findById(Integer id) {
-		return userDao.findById(id);
-	}
-
-	@Override
-	public List<User> findAll() {
-		return userDao.findAll();
-	}
 
 	@Override
 	public void saveOrUpdate(User user) {
@@ -39,9 +30,5 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-	public void delete(int id) {
-		userDao.delete(id);
-	}
-
+	
 }
