@@ -1,4 +1,4 @@
-package com.mkyong.form.dao;
+package com.zensar.form.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
